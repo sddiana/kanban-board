@@ -24,9 +24,6 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    /*display: flex;
-    flex-direction: column;
-    gap: 10px;*/
 }
 
 .columns-container {
@@ -47,53 +44,3 @@ body {
 .column-name {
     margin-bottom: 8px;
 }
-
-/*
-
-.card-form {
-    margin: 0 10px 0;
-}
-.card-form {
-    border: solid 1px pink;
-    border-radius: 20px;
-    max-width: 500px;
-    background-color: rgb(121, 121, 121);
-    padding: 10px 20px;
-}
-
-.item-list-string {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-}
-
-#submit {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: 700;
-    background-color: pink;
-    color: rgb(52, 52, 52);
-    padding: 8px 14px;
-    border-radius: 20px;
-    border: none;
-}
-
-
-
-#error-message {
-    color: red;
-}
-
-.delete-button {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: 700;
-    background-color: pink;
-    color: rgb(52, 52, 52);
-    padding: 8px 14px;
-    border-radius: 20px;
-    border: none;
-}
-
-
-
-
-
