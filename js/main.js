@@ -9,8 +9,8 @@ let app = new Vue({
 
         editCard: null,
         editTitle: '',
-        editeDescription: '',
-        editeDeadLine: '',
+        editDescription: '',
+        editDeadLine: '',
 
         cards: [] 
     },
@@ -102,9 +102,32 @@ let app = new Vue({
                     }
                     card.returnReason = reason
                 }
+
+                if (targetColumn === 4 ) {
+                    this.checkDeadline(card)
+                }
+
                 card.column = targetColumn
                 this.saveToLocalStorage()
             }
+        },
+
+        checkDeadline(card) {
+            const today = new Date()
+            today.setHours(0, 0, 0, 0)
+            const deadline = new Date(card.deadline)
+            today.setHours(0, 0, 0, 0)
+
+            if (today > deadline) {
+                card.status = 'overdue'
+                card.statusDeadline = 'Просрочено'
+            } else {
+                card.status = 'ontime'
+                card.statusDeadline = 'Выполнена в срок'
+
+            }
+
+            card.completedAt = new Date().toLocaleString()
         }
         
     },
