@@ -48,7 +48,7 @@
                 <span class="deadline">{{ card.deadline }}</span>
                 <div class="buttons">
                     <button class="button-small"> Редактировать</button>
-                    <button class="button-small">Удалить</button>
+                    <button class="button-small delete-button" @click="deleteCard(card.id)">Удалить</button>
                     <button class="button-small">В работу</button>
                 </div>
             </div>

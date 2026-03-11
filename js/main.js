@@ -7,25 +7,11 @@ let app = new Vue({
         newDescription: '',
         newDeadline: '',
 
-        cards: [
-            {
-                id: 1,
-                title: 'Тестовая карточка',
-                description: 'Тестовое описание',
-                createdAt: '01.02.2026',
-                deadline: '01.02.2026',
-                column: 1
-            },
-            {
-                id: 2,
-                title: 'Тестовая карточка 2',
-                description: 'Тестовое описание 2',
-                createdAt: '01.02.2026',
-                deadline: '01.02.2026',
-                column: 2
+        cards: [] 
+    },
 
-            }
-        ] 
+    created () {
+        this.loadFromLocalStorage()
     },
 
     methods: {
@@ -41,7 +27,6 @@ let app = new Vue({
             const newCard = {
                 id: Date.now(),
                 title: this.newTitle,
-                title: this.newTitle,
                 description: this.newDescription,
                 createdAt: new Date().toLocaleDateString(),
                 deadline: this.newDeadline,
@@ -49,10 +34,35 @@ let app = new Vue({
             }
 
             this.cards.push(newCard)
+            this.saveToLocalStorage()
 
             this.newTitle = ''
             this.newDescription = ''
             this.newDeadline = ''
+        },
+
+
+        saveToLocalStorage () {
+            localStorage.setItem('cards', JSON.stringify(this.cards))
+        },
+
+        loadFromLocalStorage () {
+            const savedCards = localStorage.getItem('cards')
+            if (savedCards) {
+                try {
+                    this.cards = JSON.parse(savedCards)
+                } catch {
+                    this.cards = []
+                }
+            }
+        },
+
+        deleteCard(cardId) {
+            this.cards = this.cards.filter(card => card.id !== cardId)
+            this.saveToLocalStorage()
         }
-    }
+        
+    },
+
+    
 })
