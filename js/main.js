@@ -3,6 +3,10 @@ let eventBus = new Vue()
 let app = new Vue({
     el: '#app',
     data: {
+        newTitle: '',
+        newDescription: '',
+        newDeadline: '',
+
         cards: [
             {
                 id: 1,
@@ -27,6 +31,28 @@ let app = new Vue({
     methods: {
         getColumnNumber(columnNumber) {
             return this.cards.filter(card => card.column === columnNumber)
+        },
+
+        createCard () {
+            if (!this.newTitle || !this.newDescription || !this.newDeadline) {
+                return alert('Заполните все поля формы!')
+            }
+
+            const newCard = {
+                id: Date.now(),
+                title: this.newTitle,
+                title: this.newTitle,
+                description: this.newDescription,
+                createdAt: new Date().toLocaleDateString(),
+                deadline: this.newDeadline,
+                column: 1
+            }
+
+            this.cards.push(newCard)
+
+            this.newTitle = ''
+            this.newDescription = ''
+            this.newDeadline = ''
         }
     }
 })

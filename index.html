@@ -16,6 +16,27 @@
 <div id="app">
     <div class="columns-container">
         <div class="column">
+
+
+            <div class="form-container">
+                <h3>Создать новую задачу</h3>
+                <div class="form-group">
+                    <label for="">Заголовок:</label>
+                    <input type="text" v-model="newTitle">
+                </div>
+                <div class="form-group">
+                    <label for="description">Описание:</label>
+                    <textarea v-model="newDescription" rows="1"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="deadline">Дедлайн:</label>
+                    <input type="date" v-model="newDeadline">
+                </div>
+                <button type="submit" class="button-create" @click="createCard()">Создать</button>
+            </div>
+
+
             <div class="column-header">
                 <h3 class="column-name">Запланированные задачи</h3>
             </div>
