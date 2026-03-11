@@ -7,6 +7,11 @@ let app = new Vue({
         newDescription: '',
         newDeadline: '',
 
+        editCard: null,
+        etitTitle: '',
+        editeDescription: '',
+        etiteDeadLine: '',
+
         cards: [] 
     },
 
@@ -28,7 +33,7 @@ let app = new Vue({
                 id: Date.now(),
                 title: this.newTitle,
                 description: this.newDescription,
-                createdAt: new Date().toLocaleDateString(),
+                createdAt: new Date().toDateString(),
                 deadline: this.newDeadline,
                 column: 1
             }
@@ -41,6 +46,29 @@ let app = new Vue({
             this.newDeadline = ''
         },
 
+        startEdit(card) {
+            this.editCard = card.id
+            this.editTitle = card.title
+            this.editDescription = card.description
+            this.editDeadline = card.deadline
+        },
+
+        saveEdit(card) {
+            card.title = this.editTitle
+            card.description = this.editDescription
+            card.deadline = this.editDeadline
+            card.lastEdited = new Date().toDateString()
+
+            this.cancelEdit()
+            this.saveToLocalStorage
+        },
+
+        cancelEdit() {
+            this.editCard = null
+            this.editTitle = ''
+            this.editDescription = ''
+            this.editDeadline = ''
+        },
 
         saveToLocalStorage () {
             localStorage.setItem('cards', JSON.stringify(this.cards))
