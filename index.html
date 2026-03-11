@@ -14,10 +14,51 @@
 </head>
 <body>
 <div id="app">
-    <card-form>
-    </card-form>
-    <card-list>
-    </card-list>
+    <div class="columns-container">
+        <div class="column">
+            <div class="column-header">
+                <h3 class="column-name">Запланированные задачи</h3>
+            </div>
+            <div class="card">
+                <h3 class="title-card">Тестовая карточка</h3>
+                <p class="description">Тестовое описание</p>
+                <span class="start-date">Дата создания: 01.02.2026</span>
+                <span class="deadline">Дедлайн: 01.02.2026</span>
+                <div class="buttons">
+                    <button class="button-small"> Редактировать</button>
+                    <button class="button-small">Удалить</button>
+                    <button class="button-small">В работу</button>
+                </div>
+            </div>
+            <div class="card">
+                <h3 class="title-card">Тестовая карточка 2</h3>
+                <p class="description">Тестовое описание 2</p>
+                <span class="start-date">Дата создания: 01.02.2026</span>
+                <span class="deadline">Дедлайн: 01.02.2026</span>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="column-header">
+                <h3 class="column-name">Задачи в работе</h3>
+            </div>
+            <div><!--карточка с вифор--></div>
+        </div>
+
+        <div class="column">
+            <div class="column-header">
+                <h3 class="column-name">Тестирование</h3>
+            </div>
+            <div><!--карточка с вифор--></div>
+        </div>
+
+        <div class="column">
+            <div class="column-header">
+                <h3 class="column-name">Выполненные задачи</h3>
+            </div>
+            <div><!--карточка с вифор--></div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
