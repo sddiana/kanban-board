@@ -61,7 +61,7 @@
                     <div class="buttons">
                         <button class="button-small" @click="startEdit(card)"> Редактировать</button>
                         <button class="button-small delete-button" @click="deleteCard(card.id)">Удалить</button>
-                        <button class="button-small">В работу</button>
+                        <button class="button-small" @click="moveCard(card.id, 2)">В работу</button>
                     </div>
                 </div>
             </div>
@@ -74,17 +74,17 @@
             </div>
             <div class="card" v-for="card in getColumnNumber(2)" :key="card.id">
 
-                <div v-if="editeCard === card.id" class="edit-mode">
+                <div v-if="editCard === card.id" class="edit-mode">
                     <input type="text" v-model="editTitle">
                     <textarea v-model="editDescription"></textarea>
                     <input type="date" v-model="editDeadline">
                     <div class="edit-buttons">
-                        <button class="button-small" @click="saveEdite(card)">Сохранить</button>
-                        <button class="button-small" @click="cancelEdite()">Отмена</button>
+                        <button class="button-small" @click="saveEdit(card)">Сохранить</button>
+                        <button class="button-small" @click="cancelEdit()">Отмена</button>
                     </div>
                 </div>
                 
-                <div v-else>
+                <div v-else class="card-inline view-mode">
                     <h3 class="title-card">{{ card.title }}</h3>
                     <p class="description">{{ card.description }}</p>
                     <span class="start-date">{{ card.createdAt }}</span>
@@ -92,7 +92,10 @@
                     <div class="buttons">
                         <button class="button-small" @click="startEdit(card)"> Редактировать</button>
                         <button class="button-small delete-button" @click="deleteCard(card.id)">Удалить</button>
-                        <button class="button-small">В тестирование</button>
+                        <button class="button-small" @click="moveCard(card.id, 3)">В тестирование</button>
+                    </div>
+                    <div v-if="card.returnReason" class="return-reason">
+                        <small>Причина возврата в работу: {{ card.returnReason }}</small>
                     </div>
                 </div>
             </div>
@@ -110,7 +113,8 @@
                 <div class="buttons">
                     <button class="button-small"> Редактировать</button>
                     <button class="button-small delete-button" @click="deleteCard(card.id)">Удалить</button>
-                    <button class="button-small">Выполнить</button>
+                    <button class="button-small" @click="moveCard(card.id, 4)">Выполнить</button>
+                    <button class="button-small" @click="moveCard(card.id, 2)">Вернуть в работу</button>
                 </div>
             </div>
         </div>

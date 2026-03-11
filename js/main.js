@@ -8,9 +8,9 @@ let app = new Vue({
         newDeadline: '',
 
         editCard: null,
-        etitTitle: '',
+        editTitle: '',
         editeDescription: '',
-        etiteDeadLine: '',
+        editeDeadLine: '',
 
         cards: [] 
     },
@@ -60,7 +60,7 @@ let app = new Vue({
             card.lastEdited = new Date().toDateString()
 
             this.cancelEdit()
-            this.saveToLocalStorage
+            this.saveToLocalStorage()
         },
 
         cancelEdit() {
@@ -88,6 +88,23 @@ let app = new Vue({
         deleteCard(cardId) {
             this.cards = this.cards.filter(card => card.id !== cardId)
             this.saveToLocalStorage()
+        },
+
+        moveCard(cardId, targetColumn) {
+            const card = this.cards.find(card => card.id === cardId)
+
+            if(card) {
+                if (card.column === 3 && targetColumn === 2) {
+                    const reason = prompt('Пожалуйста укажите причину возврата задачи из тестирования в работу')
+                    if (reason === null ) {
+                         alert('Возврат отменен. Нужно указать причину.')
+                        return
+                    }
+                    card.returnReason = reason
+                }
+                card.column = targetColumn
+                this.saveToLocalStorage()
+            }
         }
         
     },
