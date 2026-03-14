@@ -56,6 +56,9 @@ Vue.component('card-component', {
                     <button class="button-small" @click="$emit('move-card', { cardId: card.id, targetColumn: 4 })">Выполнить</button>
                     <button class="button-small" @click="$emit('move-card', { cardId: card.id, targetColumn: 2 })">Вернуть в работу</button>
                 </div>
+                <div v-if="card.returnReason" class="return-reason">
+                    <small>Причина возврата в работу: {{ card.returnReason }}</small>
+                </div>
             </div>
 
             <div v-else-if="columnNumber === 4" class="card-inline view-mode">
@@ -66,6 +69,9 @@ Vue.component('card-component', {
                 <span :class="{'overdue': card.status === 'overdue', 'ontime': card.status === 'ontime'}">{{ card.statusDeadline }}: <small>{{ card.completedAt }}</small></span>
                 <div class="buttons">
                     <button class="button-small delete-button" @click="$emit('delete-card', card.id)">Удалить</button>
+                </div>
+                <div v-if="card.returnReason" class="return-reason">
+                    <small>Причина возврата в работу: {{ card.returnReason }}</small>
                 </div>
             </div>
         </div>
@@ -284,7 +290,7 @@ let app = new Vue({
             if(card) {
                 if (card.column === 3 && payload.targetColumn === 2) {
                     const reason = prompt('Пожалуйста укажите причину возврата задачи из тестирования в работу')
-                    if (reason === null ) {
+                    if (reason === null || reason === '' ) {
                          alert('Возврат отменен. Нужно указать причину.')
                         return
                     }
