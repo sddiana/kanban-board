@@ -279,7 +279,7 @@ let app = new Vue({
         },
 
         moveCard(payload) {
-            const card = this.cards.find(c => c.id === payload.cardId)
+            const card = this.cards.find(card => card.id === payload.cardId)
 
             if(card) {
                 if (card.column === 3 && payload.targetColumn === 2) {
