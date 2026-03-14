@@ -1,5 +1,3 @@
-// main.js
-
 Vue.component('card-component', {
     props: {
         card: Object,
